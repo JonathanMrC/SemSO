@@ -1,0 +1,10 @@
+C:\Users\jonat\Desktop\this\SSO\Actividad1\bin\Debug\Actividad1.exe.config
+C:\Users\jonat\Desktop\this\SSO\Actividad1\bin\Debug\Actividad1.exe
+C:\Users\jonat\Desktop\this\SSO\Actividad1\bin\Debug\Actividad1.pdb
+C:\Users\jonat\Desktop\this\SSO\Actividad1\obj\Debug\Actividad1.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\this\SSO\Actividad1\obj\Debug\Actividad1.Form1.resources
+C:\Users\jonat\Desktop\this\SSO\Actividad1\obj\Debug\Actividad1.Properties.Resources.resources
+C:\Users\jonat\Desktop\this\SSO\Actividad1\obj\Debug\Actividad1.csproj.GenerateResource.cache
+C:\Users\jonat\Desktop\this\SSO\Actividad1\obj\Debug\Actividad1.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\this\SSO\Actividad1\obj\Debug\Actividad1.exe
+C:\Users\jonat\Desktop\this\SSO\Actividad1\obj\Debug\Actividad1.pdb

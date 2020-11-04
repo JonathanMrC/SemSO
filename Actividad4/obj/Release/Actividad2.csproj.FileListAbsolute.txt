@@ -1,0 +1,10 @@
+C:\Users\jonat\Desktop\this\SSO\Actividad2\bin\Release\Actividad2.exe.config
+C:\Users\jonat\Desktop\this\SSO\Actividad2\bin\Release\Actividad2.exe
+C:\Users\jonat\Desktop\this\SSO\Actividad2\bin\Release\Actividad2.pdb
+C:\Users\jonat\Desktop\this\SSO\Actividad2\obj\Release\Actividad2.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\this\SSO\Actividad2\obj\Release\Actividad1.Form1.resources
+C:\Users\jonat\Desktop\this\SSO\Actividad2\obj\Release\Actividad2.Properties.Resources.resources
+C:\Users\jonat\Desktop\this\SSO\Actividad2\obj\Release\Actividad2.csproj.GenerateResource.cache
+C:\Users\jonat\Desktop\this\SSO\Actividad2\obj\Release\Actividad2.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\this\SSO\Actividad2\obj\Release\Actividad2.exe
+C:\Users\jonat\Desktop\this\SSO\Actividad2\obj\Release\Actividad2.pdb
