@@ -64,7 +64,10 @@
             this.pnl_datgrid = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.lbltt_pnlfin = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
             this.dgv = new System.Windows.Forms.DataGridView();
+            this.btnMostrarAyuda = new System.Windows.Forms.Button();
+            this.btnAyudadgv = new System.Windows.Forms.Button();
             this.panelInicial.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantProcesos)).BeginInit();
             this.pnlproceso.SuspendLayout();
@@ -86,6 +89,7 @@
             this.panel1.SuspendLayout();
             this.pnl_datgrid.SuspendLayout();
             this.panel11.SuspendLayout();
+            this.panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -260,6 +264,7 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(143)))), ((int)(((byte)(199)))));
+            this.panel10.Controls.Add(this.btnMostrarAyuda);
             this.panel10.Controls.Add(this.ComenzarProceso);
             this.panel10.Controls.Add(this.lbltt);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -276,7 +281,7 @@
             this.ComenzarProceso.FlatAppearance.BorderSize = 0;
             this.ComenzarProceso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComenzarProceso.ForeColor = System.Drawing.Color.White;
-            this.ComenzarProceso.Location = new System.Drawing.Point(22, 105);
+            this.ComenzarProceso.Location = new System.Drawing.Point(24, 93);
             this.ComenzarProceso.MaximumSize = new System.Drawing.Size(100, 20);
             this.ComenzarProceso.Name = "ComenzarProceso";
             this.ComenzarProceso.Size = new System.Drawing.Size(100, 20);
@@ -290,7 +295,7 @@
             this.lbltt.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbltt.AutoSize = true;
             this.lbltt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltt.Location = new System.Drawing.Point(14, 68);
+            this.lbltt.Location = new System.Drawing.Point(8, 54);
             this.lbltt.Name = "lbltt";
             this.lbltt.Size = new System.Drawing.Size(132, 20);
             this.lbltt.TabIndex = 6;
@@ -511,8 +516,8 @@
             // 
             this.pnl_datgrid.AutoScroll = true;
             this.pnl_datgrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.pnl_datgrid.Controls.Add(this.panel12);
             this.pnl_datgrid.Controls.Add(this.panel11);
-            this.pnl_datgrid.Controls.Add(this.dgv);
             this.pnl_datgrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnl_datgrid.Location = new System.Drawing.Point(508, 0);
             this.pnl_datgrid.Name = "pnl_datgrid";
@@ -523,11 +528,12 @@
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(248)))), ((int)(((byte)(251)))));
+            this.panel11.Controls.Add(this.btnAyudadgv);
             this.panel11.Controls.Add(this.lbltt_pnlfin);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(0, 452);
+            this.panel11.Location = new System.Drawing.Point(0, 442);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(262, 69);
+            this.panel11.Size = new System.Drawing.Size(262, 79);
             this.panel11.TabIndex = 1;
             // 
             // lbltt_pnlfin
@@ -535,17 +541,27 @@
             this.lbltt_pnlfin.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbltt_pnlfin.AutoSize = true;
             this.lbltt_pnlfin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltt_pnlfin.Location = new System.Drawing.Point(65, 22);
+            this.lbltt_pnlfin.Location = new System.Drawing.Point(3, 30);
             this.lbltt_pnlfin.Name = "lbltt_pnlfin";
             this.lbltt_pnlfin.Size = new System.Drawing.Size(132, 20);
             this.lbltt_pnlfin.TabIndex = 7;
             this.lbltt_pnlfin.Text = "Tiempo Total: 0";
             this.lbltt_pnlfin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.dgv);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(262, 442);
+            this.panel12.TabIndex = 2;
+            // 
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
             this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.AllowUserToResizeRows = false;
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(143)))), ((int)(((byte)(199)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -560,10 +576,45 @@
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(54)))));
             this.dgv.Location = new System.Drawing.Point(0, 0);
+            this.dgv.Margin = new System.Windows.Forms.Padding(0);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
-            this.dgv.Size = new System.Drawing.Size(262, 521);
-            this.dgv.TabIndex = 0;
+            this.dgv.RowHeadersVisible = false;
+            this.dgv.Size = new System.Drawing.Size(262, 442);
+            this.dgv.TabIndex = 1;
+            this.dgv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TeclaenDGV);
+            // 
+            // btnMostrarAyuda
+            // 
+            this.btnMostrarAyuda.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnMostrarAyuda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(54)))));
+            this.btnMostrarAyuda.FlatAppearance.BorderSize = 0;
+            this.btnMostrarAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMostrarAyuda.ForeColor = System.Drawing.Color.White;
+            this.btnMostrarAyuda.Location = new System.Drawing.Point(24, 119);
+            this.btnMostrarAyuda.MaximumSize = new System.Drawing.Size(100, 20);
+            this.btnMostrarAyuda.Name = "btnMostrarAyuda";
+            this.btnMostrarAyuda.Size = new System.Drawing.Size(100, 20);
+            this.btnMostrarAyuda.TabIndex = 7;
+            this.btnMostrarAyuda.Text = "Ayuda";
+            this.btnMostrarAyuda.UseVisualStyleBackColor = false;
+            this.btnMostrarAyuda.Click += new System.EventHandler(this.btnMostrarAyuda_Click);
+            // 
+            // btnAyudadgv
+            // 
+            this.btnAyudadgv.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAyudadgv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(54)))));
+            this.btnAyudadgv.FlatAppearance.BorderSize = 0;
+            this.btnAyudadgv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAyudadgv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAyudadgv.ForeColor = System.Drawing.Color.White;
+            this.btnAyudadgv.Location = new System.Drawing.Point(157, 26);
+            this.btnAyudadgv.Name = "btnAyudadgv";
+            this.btnAyudadgv.Size = new System.Drawing.Size(102, 29);
+            this.btnAyudadgv.TabIndex = 8;
+            this.btnAyudadgv.Text = "Ayuda";
+            this.btnAyudadgv.UseVisualStyleBackColor = false;
+            this.btnAyudadgv.Click += new System.EventHandler(this.btnAyudadgv_Click);
             // 
             // Form
             // 
@@ -612,6 +663,7 @@
             this.pnl_datgrid.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            this.panel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
 
@@ -652,9 +704,12 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.TextBox txtboxproceso_act;
         private System.Windows.Forms.Panel pnl_datgrid;
-        private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Label lbltt_pnlfin;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.Button btnMostrarAyuda;
+        private System.Windows.Forms.Button btnAyudadgv;
     }
 }
 
