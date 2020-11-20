@@ -1,0 +1,10 @@
+D:\Semestre_Act\Sem_SO\Programas\Actividad\obj\Release\Actividad10.csprojAssemblyReference.cache
+D:\Semestre_Act\Sem_SO\Programas\Actividad\obj\Release\Actividad1.Form.resources
+D:\Semestre_Act\Sem_SO\Programas\Actividad\obj\Release\Actividad10.csproj.GenerateResource.cache
+D:\Semestre_Act\Sem_SO\Programas\Actividad\obj\Release\Actividad10.csproj.CoreCompileInputs.cache
+D:\Semestre_Act\Sem_SO\Programas\Actividad\bin\Release\Actividad10.exe.config
+D:\Semestre_Act\Sem_SO\Programas\Actividad\bin\Release\Actividad10.exe
+D:\Semestre_Act\Sem_SO\Programas\Actividad\bin\Release\Actividad10.pdb
+D:\Semestre_Act\Sem_SO\Programas\Actividad\obj\Release\Actividad10.Properties.Resources.resources
+D:\Semestre_Act\Sem_SO\Programas\Actividad\obj\Release\Actividad10.exe
+D:\Semestre_Act\Sem_SO\Programas\Actividad\obj\Release\Actividad10.pdb
