@@ -54,7 +54,7 @@ namespace Actividad1
 
         bool inte = false, intw = false, intp = false, esperando_p = false;
         long proc_terminados, tt, totalproc, id = 1, quantum = -1;
-        const int TIEMPO = 1000, MAX_MEM = 4, TIEMPO_BLOQUEADO = 8;
+        const int TIEMPO = 1000, MAX_MEM = 4, TIEMPO_BLOQUEADO = 7;
         Queue<Proceso_Long> bloqueados;
         Queue<Proceso> nuevos, listos;
         List<Proceso> Procesosterminados;
