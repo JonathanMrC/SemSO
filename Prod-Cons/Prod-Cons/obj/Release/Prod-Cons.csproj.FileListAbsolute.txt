@@ -1,0 +1,10 @@
+D:\Semestre_Act\Sem_SO\Programas\Prod-Cons\Prod-Cons\bin\Release\Prod-Cons.exe.config
+D:\Semestre_Act\Sem_SO\Programas\Prod-Cons\Prod-Cons\bin\Release\Prod-Cons.exe
+D:\Semestre_Act\Sem_SO\Programas\Prod-Cons\Prod-Cons\bin\Release\Prod-Cons.pdb
+D:\Semestre_Act\Sem_SO\Programas\Prod-Cons\Prod-Cons\obj\Release\Prod-Cons.csprojAssemblyReference.cache
+D:\Semestre_Act\Sem_SO\Programas\Prod-Cons\Prod-Cons\obj\Release\Prod_Cons.Form1.resources
+D:\Semestre_Act\Sem_SO\Programas\Prod-Cons\Prod-Cons\obj\Release\Prod_Cons.Properties.Resources.resources
+D:\Semestre_Act\Sem_SO\Programas\Prod-Cons\Prod-Cons\obj\Release\Prod-Cons.csproj.GenerateResource.cache
+D:\Semestre_Act\Sem_SO\Programas\Prod-Cons\Prod-Cons\obj\Release\Prod-Cons.csproj.CoreCompileInputs.cache
+D:\Semestre_Act\Sem_SO\Programas\Prod-Cons\Prod-Cons\obj\Release\Prod-Cons.exe
+D:\Semestre_Act\Sem_SO\Programas\Prod-Cons\Prod-Cons\obj\Release\Prod-Cons.pdb

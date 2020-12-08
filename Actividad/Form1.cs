@@ -28,6 +28,23 @@ namespace Actividad1
                 tiempo = l;
             }
         }
+        public class Frame{
+            public string Id { get; set; }
+            public string Estado { get; set; }
+            public long Tam { get; set; }
+            public Frame()
+            {
+                Id = "";
+                Estado = "";
+                Tam = 0;
+            }
+            public Frame(string id, string estado, long tam)
+            {
+                Id = id;
+                Estado = estado;
+                Tam = tam;
+            }
+        }
         public struct BCP
         {
             string _id;
@@ -53,11 +70,12 @@ namespace Actividad1
         }
 
         bool inte = false, intw = false, intp = false, esperando_p = false;
-        long proc_terminados, tt, totalproc, id = 1, quantum = -1;
-        const int TIEMPO = 1000, MAX_MEM = 4, TIEMPO_BLOQUEADO = 7;
+        long proc_terminados, tt, totalproc, id, quantum, memoria, procesosEnMem;
+        const int TIEMPO = 4000, TIEMPO_BLOQUEADO = 7, TAM_MEM = 200;
         Queue<Proceso_Long> bloqueados;
         Queue<Proceso> nuevos, listos;
         List<Proceso> Procesosterminados;
+        List<Frame> frames;
         Proceso procesotemp;
         List<BCP> bcps, bcps_terminados;
         Thread hilo;
@@ -67,15 +85,23 @@ namespace Actividad1
         {
             hilo = new Thread(Administrador);
             CheckForIllegalCrossThreadCalls = false;
-            nuevos = new Queue<Proceso>();
             Procesosterminados = new List<Proceso>();
             bcps_terminados = new List<BCP>();
+            nuevos = new Queue<Proceso>();
+            frames = new List<Frame>();
             r = new Random();
-            tt = proc_terminados = 0;
-
+            tt = proc_terminados = procesosEnMem = 0;
+            memoria = TAM_MEM;
+            quantum = -1;
+            id = 1;
+            for (int frames_t = TAM_MEM / 5; frames_t > 0; --frames_t) frames.Add(new Frame());
+            frames[0].Id = "SO";
+            frames[1].Id = "SO";
+            memoria -= 10;
             InitializeComponent();
             panelInicial.Dock = DockStyle.Fill;
             Formatodgv();
+            InicializarDGVFrames();
         }
 
         #region Datagrid
@@ -134,7 +160,7 @@ namespace Actividad1
             dgv[10, pos].Value = contenido;
             dgv[11, pos].Value = p.Tme - p.Ttranscurrido; 
             contenido = "";
-            if (temp.Respuesta != -1) contenido += temp.Respuesta;
+            if (temp.Respuesta != -1) contenido += (temp.Respuesta - temp.Llegada);
             dgv[12, pos].Value = contenido;
         }
         public int BuscarBCP(string id)
@@ -160,6 +186,57 @@ namespace Actividad1
             foreach(Proceso p in listos) InsertarEndgv(p, "Listo", -1);                                 //listos
             foreach (Proceso p in nuevos) InsertarEndgv(p, "Nuevo", -1);                                //nuevos
             lbltt_pnlfin.Text = "Tiempo total: " + tt;                                                  //tiempo
+        }
+        void InicializarDGVFrames()
+        {
+            dgvFrames.Columns.Clear();
+            dgvFrames.Columns.Add("frame1", "No.Frame");
+            dgvFrames.Columns.Add("espacios1-7", "");
+            dgvFrames.Columns.Add("frame2", "No.Frame");
+            dgvFrames.Columns.Add("espacios8-15", "");
+            dgvFrames.Columns.Add("frame3", "No.Frame");
+            dgvFrames.Columns.Add("espacios16-23", "");
+            dgvFrames.Columns.Add("frame4", "No.Frame");
+            dgvFrames.Columns.Add("espacios24-31", "");
+            dgvFrames.Columns.Add("frame5", "No.Frame");
+            dgvFrames.Columns.Add("espacios32-40", "");
+            for(int i = 0; i < 8;++i) dgvFrames.Rows.Add();
+            for (int x = 0; x < 10; x+=2)
+            {
+                dgvFrames.Columns[x].Width = 80;
+                for (int y = 0; y < 8; ++y)
+                    dgvFrames[x, y].Value = y+1+((x>>1)*8);
+            }
+            dgvFrames.Refresh();
+            ActualizarTablaFrames();
+        }
+        void ActualizarTablaFrames()
+        {
+            for (int x = 0; x < 10; x += 2)
+            {
+                for (int y = 0; y < 8; ++y)
+                {
+                    Frame f = frames[y + ((x >> 1) * 8)];
+                    if (f.Id == "SO")
+                    {
+                        dgvFrames[x + 1, y].Style.BackColor = Color.Silver;
+                        dgvFrames[x + 1, y].Value = "SO";
+                    }
+                    else if (f.Id == "")
+                    {
+                        dgvFrames[x + 1, y].Style.BackColor = Color.White;
+                        dgvFrames[x + 1, y].Value = "";
+                    }
+                    else
+                    {
+                        dgvFrames[x + 1, y].Value = f.Id + ' ' + f.Tam + " / 5";
+                        if (f.Estado == "Listo") dgvFrames[x + 1, y].Style.BackColor = Color.FromArgb(255, 252, 150);
+                        else if (f.Estado == "Ejecucion") dgvFrames[x + 1, y].Style.BackColor = Color.FromArgb(150, 255, 176);
+                        else if (f.Estado == "Bloqueado") dgvFrames[x + 1, y].Style.BackColor = Color.FromArgb(192, 150, 255);//bloqueados
+                        else dgvFrames[x + 1, y].Style.BackColor = Color.Orange;
+                    }
+                }
+            }
         }
         #endregion
 
@@ -227,7 +304,7 @@ namespace Actividad1
                     break;
 
             }
-            return new Proceso("" + id++, 7 + (GenRandom() % 10), op, GenRandom(limder), GenRandom(limiz, limder));
+            return new Proceso("" + id++, 7 + (GenRandom() % 10), op, GenRandom(limder), GenRandom(limiz, limder), GenRandom(6, 29));
         }
 
         #region Simulacion
@@ -236,8 +313,7 @@ namespace Actividad1
             listos = new Queue<Proceso>();
             bloqueados = new Queue<Proceso_Long>();
             bcps = new List<BCP>();
-            long aux = MAX_MEM;
-            while (aux-- > 0 && nuevos.Count() > 0) NuevosAlistos(); //pongo en listos los procesos posibles
+            AdministradorMemoria();
             while (proc_terminados != totalproc) {
                 ListosAEjecucion();
                 if (procesotemp.Id == "PN") EsperarProceso();
@@ -249,12 +325,12 @@ namespace Actividad1
                     else EjecucionAListos(procesotemp);
                 }
             }
-            Act_txtboxEjecucion(new Proceso("PN", 0, "+", 0, 0),0);
+            Act_txtboxEjecucion(new Proceso("PN"), 0);
             MessageBox.Show("Resultados listos");
 
             ComenzarProceso.Text = "Mostrar Tabla";
             ComenzarProceso.Visible = true;
-            procesotemp = new Proceso("PN", 0, "+", 0, 0);
+            procesotemp = new Proceso("PN");
         }
         void EsperarProceso()//solo se llama si no hay procesos en listos ni ejecutandose
         {
@@ -264,9 +340,9 @@ namespace Actividad1
              * pero si se crea un proceso durante este paso especifico
              * debe terminar esta funcion y mandar el nuevo a listos y de listos a ejecucion.
              * */
-            if (bloqueados.Count == MAX_MEM)//si el max de procesos esta en bloqueados 
+            if (bloqueados.Count == procesosEnMem)//si el max de procesos esta en bloqueados 
             {
-                while (bloqueados.Count == MAX_MEM)//esperar hasta que salga un proceso de bloqueado
+                while (bloqueados.Count == procesosEnMem)//esperar hasta que salga un proceso de bloqueado
                 {
                     Thread.Sleep(TIEMPO);
                     lbltt.Text = "Tiempo Total: " + (++tt);
@@ -319,6 +395,52 @@ namespace Actividad1
             if (termino || p.Tme == p.Ttranscurrido) return 't';
             return quantum_ind == 0 ? 'q' : 'b'; 
         }
+        void AdministradorMemoria()//pasa procesos a nuevos
+        {
+            while (nuevos.Count > 0)//si hay nuevos
+            {
+                long tam = nuevos.Peek().Tamanio;
+                long aux = tam / 5;
+                if (tam % 5 != 0) ++aux;
+                List<long> espacioDePaginas = new List<long>();
+                for (int i = 1; i < aux; ++i) espacioDePaginas.Add(5);
+                if(tam%5 == 0)espacioDePaginas.Add(5);
+                else espacioDePaginas.Add(tam%5);
+                tam = aux * 5;
+                if (memoria >= tam)
+                {
+                    memoria -= tam;
+                    Proceso p = nuevos.Peek();
+                    AsignarFrames(p, espacioDePaginas);
+                    NuevosAlistos();
+                }
+                else break;
+            }
+        }
+        void AsignarFrames(Proceso p, List<long> paginas)
+        {
+            for (int i = 2; i < frames.Count && paginas.Count > 0; ++i)
+                if (frames[i].Id == "")
+                {
+                    frames[i] = new Frame(p.Id, "Listo", paginas[0]);
+                    paginas.RemoveAt(0);
+                }
+        }
+        void ActualizarListaFrames(Proceso p, string estado)
+        {
+            for (int i = 0; i < frames.Count; ++i)
+                if (frames[i].Id == p.Id) frames[i].Estado = estado;
+            ActualizarTablaFrames();
+        }
+        void LimpiarFrames(Proceso p)
+        {
+            for (int i = 0; i < frames.Count; ++i)
+                if (frames[i].Id == p.Id)
+                {
+                    frames[i] = new Frame();
+                    memoria += 5;
+                }
+        }
         #endregion
 
         #region Transiciones
@@ -329,7 +451,12 @@ namespace Actividad1
             while (bloqueados.Count() > 0)
             {
                 Proceso_Long ptemp = bloqueados.Dequeue();
-                if (ptemp.tiempo++ == TIEMPO_BLOQUEADO) listos.Enqueue(ptemp.proceso);
+                if (ptemp.tiempo++ == TIEMPO_BLOQUEADO)
+                {
+                    listos.Enqueue(ptemp.proceso);
+                    lbllistos.Text = "Listos: " + listos.Count();
+                    ActualizarListaFrames(ptemp.proceso, "Listo");
+                }
                 else aux.Enqueue(ptemp);
             }
             bloqueados = aux;
@@ -338,11 +465,14 @@ namespace Actividad1
         }
         void NuevosAlistos()
         {
-            if (nuevos.Count == 0) return;
             bcps.Add(new BCP(nuevos.Peek().Id, tt, -1, -1, -1, -1, -1));
+            procesosEnMem++;
+            ActualizarListaFrames(nuevos.Peek(), "Listo");
             listos.Enqueue(nuevos.Dequeue());
-            lblnuevos.Text = "Nuevos: " + nuevos.Count();
-            lblnuevos.Refresh();
+            if (nuevos.Count > 0)
+                lblnuevos.Text = "Nuevos: " + nuevos.Count() + " Tamaño: " + nuevos.Peek().Tamanio;
+            else lblnuevos.Text = "Nuevos: " + nuevos.Count();
+            lbllistos.Text = "Listos: " + listos.Count();
             Act_txtboxListos();
         }
         void ListosAEjecucion()//pone en procesotemp un proceso (nulo o de listos)
@@ -356,22 +486,34 @@ namespace Actividad1
                     temp.Respuesta = tt;
                     bcps[i] = temp;
                 }
+                ActualizarListaFrames(listos.Peek(), "Ejecucion");
                 procesotemp = listos.Dequeue();
             }
-            else procesotemp = new Proceso("PN", 0, "+", 0, 0);
+            else procesotemp = new Proceso("PN");
             Act_txtboxListos();
             Act_txtboxEjecucion(procesotemp, quantum);
+        }
+        void EjecucionAListos(Proceso p)
+        {
+            listos.Enqueue(p);
+            lbllistos.Text = "Listos: " + listos.Count();
+            ActualizarListaFrames(p, "Listo");
+            Act_txtboxEjecucion(p, 0);
+            Act_txtboxListos();
         }
         void EjecucionABloqueado()
         {
             bloqueados.Enqueue(new Proceso_Long(procesotemp, 0));
+            ActualizarListaFrames(procesotemp, "Bloqueado");
             Act_txtboxBloqueados();
             Act_txtboxEjecucion(procesotemp, 0);
+            lblbloq.Text = "Bloqueados: " + bloqueados.Count;
         }
         void EjecucionATerminados(Proceso p, bool termino_c)
         {
             if (termino_c) p.Respuesta = "" + Calc(p.Operando1, p.Operador, p.Operando2);
             else p.Respuesta = "ERROR";
+
             int i = BuscarBCP(p.Id);
             BCP temp = bcps[i];
             temp.Finalizacion = tt;
@@ -380,15 +522,14 @@ namespace Actividad1
             temp.Espera = temp.Retorno - temp.Servicio;
             bcps_terminados.Add(temp);
             bcps.RemoveAt(i);
+
             Procesosterminados.Add(p);
             Act_txtboxterminados(p);
-            NuevosAlistos();
-        }
-        void EjecucionAListos(Proceso p)
-        {
-            listos.Enqueue(p);
-            Act_txtboxEjecucion(p, 0);
-            Act_txtboxListos();
+
+            LimpiarFrames(p);
+            ActualizarTablaFrames();
+            procesosEnMem--;
+            AdministradorMemoria();
         }
         #endregion
 
@@ -420,7 +561,7 @@ namespace Actividad1
         void Act_txtboxterminados(Proceso p)//Actualizar el contenido del textbox procesos terminados
         {
             lbl_npterminados.Text = "Procesos terminados : " + (++proc_terminados);
-            txtbox_terminados.Text += "\r\n" + p.ToString(3);
+            txtbox_terminados.Text = "\r\n" + p.ToString(3) + txtbox_terminados.Text;
             txtbox_terminados.Refresh();
             lbl_npterminados.Refresh();
         }
@@ -460,7 +601,7 @@ namespace Actividad1
                 }
                 else                //si no estoy en pausa
                 {
-                    if (c == 'p')   //puedo leer pausar
+                    if (c == 'p' || c == 'a')   //puedo leer pausar
                     {
                         intp = true;
                         hilo.Suspend();
@@ -475,11 +616,8 @@ namespace Actividad1
                     {
                         totalproc++;
                         nuevos.Enqueue(CrearProceso(id++));
-                        lblnuevos.Text = "Nuevos: " + nuevos.Count();
-                        lblnuevos.Refresh();
-                        int procesos_en_mem = bloqueados.Count + listos.Count;
-                        if (procesotemp.Id != "PN") procesos_en_mem++;
-                        if (procesos_en_mem < MAX_MEM) NuevosAlistos();
+                        lblnuevos.Text = "Nuevos: " + nuevos.Count() + " Tamaño: " + nuevos.Peek().Tamanio;
+                        AdministradorMemoria();
                     }
                     if (!esperando_p) {//si no espero por un proceso
                         if (c == 'e') inte = true;
@@ -497,7 +635,7 @@ namespace Actividad1
             lblquantum.Text += "" + quantum;
             long temp = totalproc = (long)nudCantProcesos.Value;
             while (temp-- > 0) nuevos.Enqueue(CrearProceso(id++));
-            lblnuevos.Text += "" + nuevos.Count();
+            lblnuevos.Text = "Nuevos: " + nuevos.Count() + " Tamaño: " + nuevos.Peek().Tamanio;
         }
         private void SegundaEtapa(object sender, EventArgs e)//Comenzar la simulacion
         {

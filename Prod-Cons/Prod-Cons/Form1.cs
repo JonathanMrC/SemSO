@@ -18,9 +18,17 @@ namespace Prod_Cons
         Random tiempo_consumidor, tiempo_productor; 
         List<PictureBox> espacios = new List<PictureBox>();
         Thread proceso1, proceso2;
-        int espacios_llenos, pos_cons, pos_prod;
+        int pos_cons, pos_prod;
         bool carrera, prod_trabajando, cons_trabajando;
         readonly int TIEMPO = 1000;
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (int)Keys.Escape) {
+                proceso1.Abort(); proceso2.Abort();
+                MessageBox.Show("Programa terminado", "Actividad 12", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
         public Form1()
         {
             if (!File.Exists(@"Lleno.png") || !File.Exists(@"Vacio.png") )
@@ -34,7 +42,7 @@ namespace Prod_Cons
                 InitializeComponent();
                 lleno = Image.FromFile(@"Lleno.png");
                 vacio = Image.FromFile(@"Vacio.png");
-                espacios_llenos = pos_cons = pos_prod = 0;
+                pos_cons = pos_prod = 0;
                 prod_trabajando = cons_trabajando = false;
                 tiempo_productor = new Random(new Random().Next(1, 10000000));
                 tiempo_consumidor = new Random(tiempo_productor.Next(0,10000000));
@@ -74,25 +82,18 @@ namespace Prod_Cons
             espacios.Add(pictureBox22);
             espacios.Add(pictureBox23);
             espacios.Add(pictureBox24);
-        }
+        }//esta funcion agrega los picturebox a la lista
 
         public void CambiarEstado(PictureBox espacio)
         {
             if (espacio.Image == lleno)
-            {
                 espacio.Image = vacio;
-                espacios_llenos--;
-            }
             else
-            {
                 espacio.Image = lleno;
-                espacios_llenos++;
-            }
         }
 
         void Productor()
-        {
-            //Dormido
+        {   //Dormido
             prod_trabajando = false;
             txt_eprod.Text = "Dormido"; 
             txt_eprod.BackColor = Color.Gray;
@@ -101,8 +102,8 @@ namespace Prod_Cons
             {
                 Thread.Sleep(tiempo_productor.Next(1, 4)*TIEMPO);       //duerme entre 1 y (4-1)
                 //Despierto
-                int cantidad = tiempo_productor.Next(3, 11);    //cantidad que producira
-                while (cantidad-- > 0) {                        //tiempo que intentara trabajar
+                int cantidad = tiempo_productor.Next(3, 11);                    //cantidad que producira
+                while (cantidad-- > 0) {                                        //tiempo que intentara trabajar
                     Thread.Sleep(TIEMPO);                                       //simulando el tiempo                                                                               
                     if (!HayProducto(espacios[pos_prod]) && !cons_trabajando)   //hay espacio y no esta trabajando el consumidor
                     {
@@ -114,9 +115,9 @@ namespace Prod_Cons
                     }
                     else                                                        //esta trabajando el consumidor o esta lleno
                     {
-                        prod_trabajando = false;                                 //bandera del productor
+                        prod_trabajando = false;                                //bandera del productor
                         txt_eprod.BackColor = Color.Orange;                     //color del estado
-                        txt_eprod.Text = "Intentando Trabajar";                 //estado productor                                                                          
+                        txt_eprod.Text = "Intentando Trabajar\r\n" + cantidad;  //estado productor                                                                          
                     }
                 }
                 //Dormido
@@ -151,7 +152,7 @@ namespace Prod_Cons
                     {
                         cons_trabajando = false;                                 //bandera del productor
                         txt_econs.BackColor = Color.Orange;                     //color del estado
-                        txt_econs.Text = "Intentando Trabajar";                 //estado productor
+                        txt_econs.Text = "Intentando Trabajar\r\n" + cantidad;                 //estado productor
                     }
                 }
                 cons_trabajando = false;
