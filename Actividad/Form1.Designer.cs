@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelInicial = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.nudQ = new System.Windows.Forms.NumericUpDown();
@@ -49,18 +49,19 @@
             this.lbllistos = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblnuevos = new System.Windows.Forms.Label();
-            this.pnl_datgrid = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.dgv = new System.Windows.Forms.DataGridView();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.btnAyudadgv = new System.Windows.Forms.Button();
-            this.lbltt_pnlfin = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlTerminados = new System.Windows.Forms.Panel();
+            this.txtbox_terminados = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbl_npterminados = new System.Windows.Forms.Label();
             this.pnlEjecucion = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtboxproceso_act = new System.Windows.Forms.TextBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.lbltt = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.ComenzarProceso = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -69,14 +70,13 @@
             this.lblproceso_ejec = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.lblquantum = new System.Windows.Forms.Label();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtboxproceso_act = new System.Windows.Forms.TextBox();
-            this.txtbox_terminados = new System.Windows.Forms.TextBox();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.ComenzarProceso = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.lbltt = new System.Windows.Forms.Label();
             this.dgvFrames = new System.Windows.Forms.DataGridView();
+            this.pnl_datgrid = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.dgv = new System.Windows.Forms.DataGridView();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.btnAyudadgv = new System.Windows.Forms.Button();
+            this.lbltt_pnlfin = new System.Windows.Forms.Label();
             this.panelInicial.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudQ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantProcesos)).BeginInit();
@@ -89,24 +89,24 @@
             this.panel3.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.pnl_datgrid.SuspendLayout();
-            this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
-            this.panel11.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.pnlTerminados.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlEjecucion.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel14.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
-            this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFrames)).BeginInit();
+            this.pnl_datgrid.SuspendLayout();
+            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelInicial
@@ -118,7 +118,7 @@
             this.panelInicial.Controls.Add(this.btnComenzar);
             this.panelInicial.Controls.Add(this.nudCantProcesos);
             this.panelInicial.Controls.Add(this.label1);
-            this.panelInicial.Location = new System.Drawing.Point(14, 0);
+            this.panelInicial.Location = new System.Drawing.Point(12, 0);
             this.panelInicial.Name = "panelInicial";
             this.panelInicial.Size = new System.Drawing.Size(35, 521);
             this.panelInicial.TabIndex = 0;
@@ -262,8 +262,8 @@
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 35);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(205, 486);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
@@ -273,10 +273,10 @@
             this.panel5.Controls.Add(this.txtboxbloqueados);
             this.panel5.Controls.Add(this.panel9);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 243);
+            this.panel5.Location = new System.Drawing.Point(0, 340);
             this.panel5.Margin = new System.Windows.Forms.Padding(0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(205, 243);
+            this.panel5.Size = new System.Drawing.Size(205, 146);
             this.panel5.TabIndex = 1;
             // 
             // txtboxbloqueados
@@ -291,7 +291,7 @@
             this.txtboxbloqueados.Name = "txtboxbloqueados";
             this.txtboxbloqueados.ReadOnly = true;
             this.txtboxbloqueados.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtboxbloqueados.Size = new System.Drawing.Size(199, 202);
+            this.txtboxbloqueados.Size = new System.Drawing.Size(199, 105);
             this.txtboxbloqueados.TabIndex = 2;
             // 
             // panel9
@@ -326,7 +326,7 @@
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(205, 243);
+            this.panel3.Size = new System.Drawing.Size(205, 340);
             this.panel3.TabIndex = 0;
             // 
             // txtbox_listos
@@ -341,7 +341,7 @@
             this.txtbox_listos.Name = "txtbox_listos";
             this.txtbox_listos.ReadOnly = true;
             this.txtbox_listos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtbox_listos.Size = new System.Drawing.Size(199, 202);
+            this.txtbox_listos.Size = new System.Drawing.Size(199, 299);
             this.txtbox_listos.TabIndex = 1;
             // 
             // panel8
@@ -382,7 +382,7 @@
             // 
             // lblnuevos
             // 
-            this.lblnuevos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblnuevos.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblnuevos.AutoSize = true;
             this.lblnuevos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblnuevos.Location = new System.Drawing.Point(2, 8);
@@ -391,94 +391,6 @@
             this.lblnuevos.TabIndex = 5;
             this.lblnuevos.Text = "Nuevos:";
             this.lblnuevos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pnl_datgrid
-            // 
-            this.pnl_datgrid.AutoScroll = true;
-            this.pnl_datgrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.pnl_datgrid.Controls.Add(this.panel12);
-            this.pnl_datgrid.Controls.Add(this.panel11);
-            this.pnl_datgrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnl_datgrid.Location = new System.Drawing.Point(508, 0);
-            this.pnl_datgrid.Name = "pnl_datgrid";
-            this.pnl_datgrid.Size = new System.Drawing.Size(262, 521);
-            this.pnl_datgrid.TabIndex = 3;
-            this.pnl_datgrid.Visible = false;
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.dgv);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel12.Location = new System.Drawing.Point(0, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(262, 442);
-            this.panel12.TabIndex = 2;
-            // 
-            // dgv
-            // 
-            this.dgv.AllowUserToAddRows = false;
-            this.dgv.AllowUserToDeleteRows = false;
-            this.dgv.AllowUserToResizeRows = false;
-            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(143)))), ((int)(((byte)(199)))));
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(248)))), ((int)(((byte)(251)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(54)))));
-            this.dgv.Location = new System.Drawing.Point(0, 0);
-            this.dgv.Margin = new System.Windows.Forms.Padding(0);
-            this.dgv.Name = "dgv";
-            this.dgv.ReadOnly = true;
-            this.dgv.RowHeadersVisible = false;
-            this.dgv.Size = new System.Drawing.Size(262, 442);
-            this.dgv.TabIndex = 1;
-            this.dgv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TeclaenDGV);
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(248)))), ((int)(((byte)(251)))));
-            this.panel11.Controls.Add(this.btnAyudadgv);
-            this.panel11.Controls.Add(this.lbltt_pnlfin);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(0, 442);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(262, 79);
-            this.panel11.TabIndex = 1;
-            // 
-            // btnAyudadgv
-            // 
-            this.btnAyudadgv.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAyudadgv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(54)))));
-            this.btnAyudadgv.FlatAppearance.BorderSize = 0;
-            this.btnAyudadgv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAyudadgv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAyudadgv.ForeColor = System.Drawing.Color.White;
-            this.btnAyudadgv.Location = new System.Drawing.Point(157, 26);
-            this.btnAyudadgv.Name = "btnAyudadgv";
-            this.btnAyudadgv.Size = new System.Drawing.Size(102, 29);
-            this.btnAyudadgv.TabIndex = 8;
-            this.btnAyudadgv.Text = "Ayuda";
-            this.btnAyudadgv.UseVisualStyleBackColor = false;
-            this.btnAyudadgv.Click += new System.EventHandler(this.btnAyudadgv_Click);
-            // 
-            // lbltt_pnlfin
-            // 
-            this.lbltt_pnlfin.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbltt_pnlfin.AutoSize = true;
-            this.lbltt_pnlfin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltt_pnlfin.Location = new System.Drawing.Point(3, 30);
-            this.lbltt_pnlfin.Name = "lbltt_pnlfin";
-            this.lbltt_pnlfin.Size = new System.Drawing.Size(132, 20);
-            this.lbltt_pnlfin.TabIndex = 7;
-            this.lbltt_pnlfin.Text = "Tiempo Total: 0";
-            this.lbltt_pnlfin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel3
             // 
@@ -525,6 +437,15 @@
             this.pnlTerminados.Size = new System.Drawing.Size(240, 325);
             this.pnlTerminados.TabIndex = 5;
             // 
+            // txtbox_terminados
+            // 
+            this.txtbox_terminados.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtbox_terminados.Location = new System.Drawing.Point(0, 70);
+            this.txtbox_terminados.Multiline = true;
+            this.txtbox_terminados.Name = "txtbox_terminados";
+            this.txtbox_terminados.Size = new System.Drawing.Size(240, 255);
+            this.txtbox_terminados.TabIndex = 1;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(143)))), ((int)(((byte)(199)))));
@@ -557,6 +478,90 @@
             this.pnlEjecucion.Name = "pnlEjecucion";
             this.pnlEjecucion.Size = new System.Drawing.Size(239, 325);
             this.pnlEjecucion.TabIndex = 4;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(143)))), ((int)(((byte)(199)))));
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.txtboxproceso_act, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.panel6, 0, 1);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 70);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(239, 255);
+            this.tableLayoutPanel6.TabIndex = 2;
+            // 
+            // txtboxproceso_act
+            // 
+            this.txtboxproceso_act.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(255)))), ((int)(((byte)(176)))));
+            this.txtboxproceso_act.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtboxproceso_act.Location = new System.Drawing.Point(3, 3);
+            this.txtboxproceso_act.Multiline = true;
+            this.txtboxproceso_act.Name = "txtboxproceso_act";
+            this.txtboxproceso_act.ReadOnly = true;
+            this.txtboxproceso_act.Size = new System.Drawing.Size(233, 147);
+            this.txtboxproceso_act.TabIndex = 0;
+            this.txtboxproceso_act.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TeclaEnProcesoAct);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.lbltt);
+            this.panel6.Controls.Add(this.button2);
+            this.panel6.Controls.Add(this.ComenzarProceso);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 153);
+            this.panel6.Margin = new System.Windows.Forms.Padding(0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(239, 102);
+            this.panel6.TabIndex = 1;
+            // 
+            // lbltt
+            // 
+            this.lbltt.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbltt.AutoSize = true;
+            this.lbltt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltt.Location = new System.Drawing.Point(45, 18);
+            this.lbltt.Name = "lbltt";
+            this.lbltt.Size = new System.Drawing.Size(118, 20);
+            this.lbltt.TabIndex = 6;
+            this.lbltt.Text = "Tiempo total: ";
+            this.lbltt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(54)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(72, 68);
+            this.button2.MaximumSize = new System.Drawing.Size(100, 20);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 20);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Ayuda";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.btnMostrarAyuda_Click);
+            // 
+            // ComenzarProceso
+            // 
+            this.ComenzarProceso.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ComenzarProceso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(54)))));
+            this.ComenzarProceso.FlatAppearance.BorderSize = 0;
+            this.ComenzarProceso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComenzarProceso.ForeColor = System.Drawing.Color.White;
+            this.ComenzarProceso.Location = new System.Drawing.Point(72, 42);
+            this.ComenzarProceso.MaximumSize = new System.Drawing.Size(100, 20);
+            this.ComenzarProceso.Name = "ComenzarProceso";
+            this.ComenzarProceso.Size = new System.Drawing.Size(100, 20);
+            this.ComenzarProceso.TabIndex = 4;
+            this.ComenzarProceso.Text = "Comenzar";
+            this.ComenzarProceso.UseVisualStyleBackColor = false;
+            this.ComenzarProceso.Click += new System.EventHandler(this.SegundaEtapa);
             // 
             // panel4
             // 
@@ -651,99 +656,6 @@
             this.lblquantum.Text = "Quantum: ";
             this.lblquantum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(143)))), ((int)(((byte)(199)))));
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.txtboxproceso_act, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.panel6, 0, 1);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 70);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(239, 255);
-            this.tableLayoutPanel6.TabIndex = 2;
-            // 
-            // txtboxproceso_act
-            // 
-            this.txtboxproceso_act.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(255)))), ((int)(((byte)(176)))));
-            this.txtboxproceso_act.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtboxproceso_act.Location = new System.Drawing.Point(3, 3);
-            this.txtboxproceso_act.Multiline = true;
-            this.txtboxproceso_act.Name = "txtboxproceso_act";
-            this.txtboxproceso_act.ReadOnly = true;
-            this.txtboxproceso_act.Size = new System.Drawing.Size(233, 121);
-            this.txtboxproceso_act.TabIndex = 0;
-            this.txtboxproceso_act.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TeclaEnProcesoAct);
-            // 
-            // txtbox_terminados
-            // 
-            this.txtbox_terminados.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtbox_terminados.Location = new System.Drawing.Point(0, 70);
-            this.txtbox_terminados.Multiline = true;
-            this.txtbox_terminados.Name = "txtbox_terminados";
-            this.txtbox_terminados.Size = new System.Drawing.Size(240, 255);
-            this.txtbox_terminados.TabIndex = 1;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.lbltt);
-            this.panel6.Controls.Add(this.button2);
-            this.panel6.Controls.Add(this.ComenzarProceso);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 127);
-            this.panel6.Margin = new System.Windows.Forms.Padding(0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(239, 128);
-            this.panel6.TabIndex = 1;
-            // 
-            // ComenzarProceso
-            // 
-            this.ComenzarProceso.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ComenzarProceso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(54)))));
-            this.ComenzarProceso.FlatAppearance.BorderSize = 0;
-            this.ComenzarProceso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComenzarProceso.ForeColor = System.Drawing.Color.White;
-            this.ComenzarProceso.Location = new System.Drawing.Point(69, 73);
-            this.ComenzarProceso.MaximumSize = new System.Drawing.Size(100, 20);
-            this.ComenzarProceso.Name = "ComenzarProceso";
-            this.ComenzarProceso.Size = new System.Drawing.Size(100, 20);
-            this.ComenzarProceso.TabIndex = 4;
-            this.ComenzarProceso.Text = "Comenzar";
-            this.ComenzarProceso.UseVisualStyleBackColor = false;
-            this.ComenzarProceso.Click += new System.EventHandler(this.SegundaEtapa);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(54)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(69, 99);
-            this.button2.MaximumSize = new System.Drawing.Size(100, 20);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 20);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Ayuda";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.btnMostrarAyuda_Click);
-            // 
-            // lbltt
-            // 
-            this.lbltt.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbltt.AutoSize = true;
-            this.lbltt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltt.Location = new System.Drawing.Point(42, 36);
-            this.lbltt.Name = "lbltt";
-            this.lbltt.Size = new System.Drawing.Size(118, 20);
-            this.lbltt.TabIndex = 6;
-            this.lbltt.Text = "Tiempo total: ";
-            this.lbltt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // dgvFrames
             // 
             this.dgvFrames.AllowUserToAddRows = false;
@@ -757,19 +669,107 @@
             this.dgvFrames.Size = new System.Drawing.Size(473, 190);
             this.dgvFrames.TabIndex = 1;
             // 
+            // pnl_datgrid
+            // 
+            this.pnl_datgrid.AutoScroll = true;
+            this.pnl_datgrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.pnl_datgrid.Controls.Add(this.panel12);
+            this.pnl_datgrid.Controls.Add(this.panel11);
+            this.pnl_datgrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnl_datgrid.Location = new System.Drawing.Point(1008, 0);
+            this.pnl_datgrid.Name = "pnl_datgrid";
+            this.pnl_datgrid.Size = new System.Drawing.Size(54, 521);
+            this.pnl_datgrid.TabIndex = 3;
+            this.pnl_datgrid.Visible = false;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.dgv);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(54, 442);
+            this.panel12.TabIndex = 2;
+            // 
+            // dgv
+            // 
+            this.dgv.AllowUserToAddRows = false;
+            this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.AllowUserToResizeRows = false;
+            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(143)))), ((int)(((byte)(199)))));
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(248)))), ((int)(((byte)(251)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(54)))));
+            this.dgv.Location = new System.Drawing.Point(0, 0);
+            this.dgv.Margin = new System.Windows.Forms.Padding(0);
+            this.dgv.Name = "dgv";
+            this.dgv.ReadOnly = true;
+            this.dgv.RowHeadersVisible = false;
+            this.dgv.Size = new System.Drawing.Size(54, 442);
+            this.dgv.TabIndex = 1;
+            this.dgv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TeclaenDGV);
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(248)))), ((int)(((byte)(251)))));
+            this.panel11.Controls.Add(this.btnAyudadgv);
+            this.panel11.Controls.Add(this.lbltt_pnlfin);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel11.Location = new System.Drawing.Point(0, 442);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(54, 79);
+            this.panel11.TabIndex = 1;
+            // 
+            // btnAyudadgv
+            // 
+            this.btnAyudadgv.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAyudadgv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(54)))));
+            this.btnAyudadgv.FlatAppearance.BorderSize = 0;
+            this.btnAyudadgv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAyudadgv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAyudadgv.ForeColor = System.Drawing.Color.White;
+            this.btnAyudadgv.Location = new System.Drawing.Point(-51, 26);
+            this.btnAyudadgv.Name = "btnAyudadgv";
+            this.btnAyudadgv.Size = new System.Drawing.Size(102, 29);
+            this.btnAyudadgv.TabIndex = 8;
+            this.btnAyudadgv.Text = "Ayuda";
+            this.btnAyudadgv.UseVisualStyleBackColor = false;
+            this.btnAyudadgv.Click += new System.EventHandler(this.btnAyudadgv_Click);
+            // 
+            // lbltt_pnlfin
+            // 
+            this.lbltt_pnlfin.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbltt_pnlfin.AutoSize = true;
+            this.lbltt_pnlfin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltt_pnlfin.Location = new System.Drawing.Point(3, 30);
+            this.lbltt_pnlfin.Name = "lbltt_pnlfin";
+            this.lbltt_pnlfin.Size = new System.Drawing.Size(132, 20);
+            this.lbltt_pnlfin.TabIndex = 7;
+            this.lbltt_pnlfin.Text = "Tiempo Total: 0";
+            this.lbltt_pnlfin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(248)))), ((int)(((byte)(251)))));
-            this.ClientSize = new System.Drawing.Size(782, 521);
+            this.ClientSize = new System.Drawing.Size(1064, 681);
             this.Controls.Add(this.panelInicial);
             this.Controls.Add(this.pnl_simulacion);
             this.Controls.Add(this.pnl_datgrid);
             this.MinimumSize = new System.Drawing.Size(798, 560);
             this.Name = "Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Actividad 10";
+            this.Text = "Actividad 14";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCerrado);
             this.panelInicial.ResumeLayout(false);
             this.panelInicial.PerformLayout();
@@ -789,11 +789,6 @@
             this.panel8.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.pnl_datgrid.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.pnlTerminados.ResumeLayout(false);
@@ -801,6 +796,10 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.pnlEjecucion.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -809,11 +808,12 @@
             this.panel16.PerformLayout();
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFrames)).EndInit();
+            this.pnl_datgrid.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.ResumeLayout(false);
 
         }

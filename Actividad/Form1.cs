@@ -71,7 +71,7 @@ namespace Actividad1
 
         bool inte = false, intw = false, intp = false, esperando_p = false;
         long proc_terminados, tt, totalproc, id, quantum, memoria, procesosEnMem;
-        const int TIEMPO = 4000, TIEMPO_BLOQUEADO = 7, TAM_MEM = 200;
+        const int TIEMPO = 1000, TIEMPO_BLOQUEADO = 7, TAM_MEM = 200;
         Queue<Proceso_Long> bloqueados;
         Queue<Proceso> nuevos, listos;
         List<Proceso> Procesosterminados;
@@ -191,19 +191,19 @@ namespace Actividad1
         {
             dgvFrames.Columns.Clear();
             dgvFrames.Columns.Add("frame1", "No.Frame");
-            dgvFrames.Columns.Add("espacios1-7", "");
+            dgvFrames.Columns.Add("espacios1-7", "Proceso/Ocupado");
             dgvFrames.Columns.Add("frame2", "No.Frame");
-            dgvFrames.Columns.Add("espacios8-15", "");
+            dgvFrames.Columns.Add("espacios8-15", "Proceso/Ocupado");
             dgvFrames.Columns.Add("frame3", "No.Frame");
-            dgvFrames.Columns.Add("espacios16-23", "");
+            dgvFrames.Columns.Add("espacios16-23", "Proceso/Ocupado");
             dgvFrames.Columns.Add("frame4", "No.Frame");
-            dgvFrames.Columns.Add("espacios24-31", "");
+            dgvFrames.Columns.Add("espacios24-31", "Proceso/Ocupado");
             dgvFrames.Columns.Add("frame5", "No.Frame");
-            dgvFrames.Columns.Add("espacios32-40", "");
-            for(int i = 0; i < 8;++i) dgvFrames.Rows.Add();
+            dgvFrames.Columns.Add("espacios32-40", "Proceso/Ocupado");
+            for (int i = 0; i < 8;++i) dgvFrames.Rows.Add();
             for (int x = 0; x < 10; x+=2)
             {
-                dgvFrames.Columns[x].Width = 80;
+                dgvFrames.Columns[x].Width = 60;
                 for (int y = 0; y < 8; ++y)
                     dgvFrames[x, y].Value = y+1+((x>>1)*8);
             }
@@ -229,7 +229,7 @@ namespace Actividad1
                     }
                     else
                     {
-                        dgvFrames[x + 1, y].Value = f.Id + ' ' + f.Tam + " / 5";
+                        dgvFrames[x + 1, y].Value = "ID: "+f.Id + " -> " + f.Tam + " / 5";
                         if (f.Estado == "Listo") dgvFrames[x + 1, y].Style.BackColor = Color.FromArgb(255, 252, 150);
                         else if (f.Estado == "Ejecucion") dgvFrames[x + 1, y].Style.BackColor = Color.FromArgb(150, 255, 176);
                         else if (f.Estado == "Bloqueado") dgvFrames[x + 1, y].Style.BackColor = Color.FromArgb(192, 150, 255);//bloqueados
@@ -395,6 +395,31 @@ namespace Actividad1
             if (termino || p.Tme == p.Ttranscurrido) return 't';
             return quantum_ind == 0 ? 'q' : 'b'; 
         }
+        void AdminstradorBloqueados()
+        {
+            List<Proceso> temp = new List<Proceso>();
+            if (bloqueados.Count() == 0) return;
+            Queue<Proceso_Long> aux = new Queue<Proceso_Long>();
+            while (bloqueados.Count() > 0)
+            {
+                Proceso_Long ptemp = bloqueados.Dequeue();
+                if (ptemp.tiempo++ == TIEMPO_BLOQUEADO)
+                {
+                    listos.Enqueue(ptemp.proceso);
+                    lbllistos.Text = "Listos: " + listos.Count();
+                    temp.Add(ptemp.proceso);
+                }
+                else aux.Enqueue(ptemp);
+            }
+            bloqueados = aux;
+            lblbloq.Text = "Bloqueados: " + bloqueados.Count;
+            lbllistos.Text = "Listos: " + listos.Count;
+            Act_txtboxListos();
+            Act_txtboxBloqueados();
+            foreach(Proceso p in temp)
+            ActualizarFramesST(p, "Listo");
+            ActualizarTablaFrames();
+        }
         void AdministradorMemoria()//pasa procesos a nuevos
         {
             while (nuevos.Count > 0)//si hay nuevos
@@ -432,6 +457,11 @@ namespace Actividad1
                 if (frames[i].Id == p.Id) frames[i].Estado = estado;
             ActualizarTablaFrames();
         }
+        void ActualizarFramesST(Proceso p, string estado)
+        {
+            for (int i = 0; i < frames.Count; ++i)
+                if (frames[i].Id == p.Id) frames[i].Estado = estado;
+        }
         void LimpiarFrames(Proceso p)
         {
             for (int i = 0; i < frames.Count; ++i)
@@ -444,36 +474,17 @@ namespace Actividad1
         #endregion
 
         #region Transiciones
-        void AdminstradorBloqueados()
-        {
-            if (bloqueados.Count() == 0) return;
-            Queue<Proceso_Long> aux = new Queue<Proceso_Long>();
-            while (bloqueados.Count() > 0)
-            {
-                Proceso_Long ptemp = bloqueados.Dequeue();
-                if (ptemp.tiempo++ == TIEMPO_BLOQUEADO)
-                {
-                    listos.Enqueue(ptemp.proceso);
-                    lbllistos.Text = "Listos: " + listos.Count();
-                    ActualizarListaFrames(ptemp.proceso, "Listo");
-                }
-                else aux.Enqueue(ptemp);
-            }
-            bloqueados = aux;
-            Act_txtboxListos();
-            Act_txtboxBloqueados();
-        }
         void NuevosAlistos()
         {
             bcps.Add(new BCP(nuevos.Peek().Id, tt, -1, -1, -1, -1, -1));
-            procesosEnMem++;
-            ActualizarListaFrames(nuevos.Peek(), "Listo");
             listos.Enqueue(nuevos.Dequeue());
             if (nuevos.Count > 0)
-                lblnuevos.Text = "Nuevos: " + nuevos.Count() + " Tamaño: " + nuevos.Peek().Tamanio;
+                lblnuevos.Text = "Nuevos: " + nuevos.Count() + " -> Id: " + nuevos.Peek().Id + " Tamaño: " + nuevos.Peek().Tamanio;
             else lblnuevos.Text = "Nuevos: " + nuevos.Count();
             lbllistos.Text = "Listos: " + listos.Count();
             Act_txtboxListos();
+            procesosEnMem++;
+            ActualizarListaFrames(listos.Peek(), "Listo");
         }
         void ListosAEjecucion()//pone en procesotemp un proceso (nulo o de listos)
         {
@@ -486,28 +497,28 @@ namespace Actividad1
                     temp.Respuesta = tt;
                     bcps[i] = temp;
                 }
-                ActualizarListaFrames(listos.Peek(), "Ejecucion");
                 procesotemp = listos.Dequeue();
             }
             else procesotemp = new Proceso("PN");
             Act_txtboxListos();
             Act_txtboxEjecucion(procesotemp, quantum);
+            ActualizarListaFrames(procesotemp, "Ejecucion");
         }
         void EjecucionAListos(Proceso p)
         {
             listos.Enqueue(p);
             lbllistos.Text = "Listos: " + listos.Count();
-            ActualizarListaFrames(p, "Listo");
             Act_txtboxEjecucion(p, 0);
             Act_txtboxListos();
+            ActualizarListaFrames(p, "Listo");
         }
         void EjecucionABloqueado()
         {
             bloqueados.Enqueue(new Proceso_Long(procesotemp, 0));
-            ActualizarListaFrames(procesotemp, "Bloqueado");
             Act_txtboxBloqueados();
             Act_txtboxEjecucion(procesotemp, 0);
             lblbloq.Text = "Bloqueados: " + bloqueados.Count;
+            ActualizarListaFrames(procesotemp, "Bloqueado");
         }
         void EjecucionATerminados(Proceso p, bool termino_c)
         {
@@ -616,7 +627,7 @@ namespace Actividad1
                     {
                         totalproc++;
                         nuevos.Enqueue(CrearProceso(id++));
-                        lblnuevos.Text = "Nuevos: " + nuevos.Count() + " Tamaño: " + nuevos.Peek().Tamanio;
+                        lblnuevos.Text = "Nuevos: " + nuevos.Count() + " -> Id: " + nuevos.Peek().Id + " Tamaño: " + nuevos.Peek().Tamanio;
                         AdministradorMemoria();
                     }
                     if (!esperando_p) {//si no espero por un proceso
@@ -635,7 +646,7 @@ namespace Actividad1
             lblquantum.Text += "" + quantum;
             long temp = totalproc = (long)nudCantProcesos.Value;
             while (temp-- > 0) nuevos.Enqueue(CrearProceso(id++));
-            lblnuevos.Text = "Nuevos: " + nuevos.Count() + " Tamaño: " + nuevos.Peek().Tamanio;
+            lblnuevos.Text = "Nuevos: " + nuevos.Count() + " -> Id: " + nuevos.Peek().Id + " Tamaño: " + nuevos.Peek().Tamanio;
         }
         private void SegundaEtapa(object sender, EventArgs e)//Comenzar la simulacion
         {

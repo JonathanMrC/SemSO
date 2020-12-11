@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{831E90D5-5514-4296-9773-7F5361E87F7D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Actividad10</RootNamespace>
-    <AssemblyName>Actividad10</AssemblyName>
+    <RootNamespace>Actividad14</RootNamespace>
+    <AssemblyName>Actividad14</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

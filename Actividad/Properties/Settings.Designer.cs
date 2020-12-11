@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Actividad10.Properties {
+namespace Actividad14.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
